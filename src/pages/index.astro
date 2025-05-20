@@ -1,16 +1,16 @@
 ---
-
+import MainLayout from "../layouts/MainLayout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<MainLayout title="Tecno Store" description="Tienda de tecnología">
+    <h1 class="text-3xl font-bold">Bienvenido a Tecno Store</h1>
+    <p class="mt-4">Tu tienda de tecnología favorita.</p>
+    <p class="mt-4">Aquí encontrarás los mejores productos tecnológicos.</p>
+    <p class="mt-4">
+        ¡Explora nuestra tienda y descubre lo que tenemos para ti!
+    </p>
+    <p class="mt-4">¡Gracias por visitarnos!</p>
+    <p class="mt-4">¡Esperamos verte pronto!</p>
+    <p class="mt-4">¡No olvides seguirnos en nuestras redes sociales!</p>
+    <p class="mt-4">¡Estamos aquí para ayudarte!</p>
+</MainLayout>

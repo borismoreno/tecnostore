@@ -1,0 +1,22 @@
+---
+import { actions } from "astro:actions";
+import MainLayout from "../../layouts/MainLayout.astro";
+
+const { name } = Astro.params;
+const { data, error } = await Astro.callAction(
+    actions.getProductsByCategory,
+    name ?? "CASE",
+);
+---
+
+<MainLayout title={name}>
+    <div>Products</div>
+    {
+        data?.products.map((product) => (
+            <div>
+                <h2>{product.name}</h2>
+                <p>{product.price}</p>
+            </div>
+        ))
+    }
+</MainLayout>

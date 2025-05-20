@@ -1,14 +1,24 @@
 {
-  "name": "tecnostore",
-  "type": "module",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "astro": "^5.7.13"
-  }
+    "name": "tecnostore",
+    "type": "module",
+    "version": "0.0.1",
+    "scripts": {
+        "dev": "astro dev",
+        "build": "astro build --remote",
+        "preview": "astro preview",
+        "astro": "astro"
+    },
+    "dependencies": {
+        "@astrojs/db": "^0.14.14",
+        "@lucide/astro": "^0.511.0",
+        "@tailwindcss/vite": "^4.1.7",
+        "astro": "^5.7.13",
+        "astro-aws-amplify": "^0.1.0",
+        "dotenv": "^16.5.0",
+        "tailwindcss": "^4.1.7",
+        "uuid": "^11.1.0"
+    },
+    "devDependencies": {
+        "daisyui": "^5.0.35"
+    }
 }

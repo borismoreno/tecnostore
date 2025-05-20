@@ -1,0 +1,170 @@
+---
+import {
+    LaptopIcon,
+    SearchCheckIcon,
+    ShoppingCartIcon,
+    UserCheckIcon,
+    UserIcon,
+} from "@lucide/astro";
+import { actions } from "astro:actions";
+import type { Category } from "../../interfaces/category.interface";
+const isLoggedIn = true; // Simulate user login status
+
+const { data, error } = await Astro.callAction(actions.getCategories, {});
+let categories: Category[] = [];
+if (!error && data && data.categories) {
+    categories = data.categories;
+} else {
+    console.error(error);
+}
+---
+
+<div
+    class="flex items-center justify-center bg-[#f0f2f3] w-full h-[104px] md:h-[84px]"
+>
+    <div
+        class="lg:container grid grid-cols-1 md:grid-cols-3 items-center gap-4 md:gap-0 px-4 md:px-0"
+    >
+        <div class="navbar-center avatar">
+            <a
+                href="/"
+                class="text-2xl md:text-3xl font-inter text-black font-medium capitalize flex items-center gap-2"
+                ><LaptopIcon color="#029fae" size="2rem" />TecnoStore</a
+            >
+        </div>
+        <div class="hidden md:block">
+            <form
+                action="#"
+                class="max-w-full md:max-w-[443px] h-[44px] relative"
+            >
+                <input
+                    type="text"
+                    placeholder="Buscar..."
+                    class="w-full h-full bg-white rounded-lg pl-4 outline-none max-w-[443px]"
+                />
+
+                <button class="absolute to-50% right-4 translate-y-1/2">
+                    <SearchCheckIcon color="#272343" size="22px" />
+                </button>
+            </form>
+        </div>
+        <div class="flex items-center gap-4">
+            <button class="btn capitalize">
+                <ShoppingCartIcon /> carrito<div
+                    class="badge badge-sm bg-[#029fae]"
+                >
+                    2
+                </div>
+            </button>
+            <!-- <button class="btn capitalize">
+                <Heart />
+            </button> -->
+            {
+                isLoggedIn ? (
+                    <div class="dropdown">
+                        <div tabindex="0" role="button" class="btn m-1">
+                            <UserIcon />
+                        </div>
+                        <ul
+                            tabindex="0"
+                            class="dropdown-content left menu bg-base-100 rounded-box z-1 w-26 p-2 shadow-sm"
+                        >
+                            <li>
+                                <a>Profile</a>
+                            </li>
+                            <li>
+                                <a>Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                ) : (
+                    <a href="/" class="btn btn-link">
+                        Ingresar
+                    </a>
+                )
+            }
+        </div>
+    </div>
+</div>
+<div
+    class="navbar_bottom flex flex-col md:flex-row items-center justify-between md:justify-center w-full h-auto md:h-[75px] bg-white border-b-[1px] border-[#e1e3e5] px-4 md:px-0 py-4 md:py-0"
+>
+    <div
+        class="lg:container flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0"
+    >
+        <div
+            class="navbar_bottom_left flex flex-wrap items-center gap-4 md:gap-8"
+        >
+            <!-- <div class="dropdown dropdown-start">
+                <div
+                    tabindex={0}
+                    role="button"
+                    class="btn m-1 flex items-center gap-5 capitalize"
+                >
+                    <Menu /> all categories
+                </div>
+                <ul
+                    tabindex={0}
+                    class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
+                >
+                    <li><a>Chair</a></li>
+                    <li><a>Pant</a></li>
+                    <li><a>Shirt</a></li>
+                    <li><a>T-Shirt</a></li>
+                    <li><a>T-Shirt</a></li>
+                </ul>
+            </div> -->
+
+            <nav class="flex flex-wrap items-center gap-4 md:gap-8">
+                {
+                    categories.map((category) => (
+                        <a
+                            href={`/categories/${category.category}`}
+                            class="text-sm text-[#636270] font-inter font-medium capitalize flex items-center gap-2"
+                        >
+                            {category.category}
+                        </a>
+                    ))
+                }
+                <!-- <a
+                    href="/"
+                    class="text-sm text-[#029fae] font-inter font-medium capitalize"
+                    >Home</a
+                >
+                <a
+                    class="text-sm text-[#636270] font-inter font-medium capitalize"
+                    >shop</a
+                >
+                <a
+                    class="text-sm text-[#636270] font-inter font-medium capitalize"
+                    >product</a
+                >
+                <a
+                    class="text-sm text-[#636270] font-inter font-medium capitalize"
+                    >pages</a
+                >
+                <a
+                    class="text-sm text-[#636270] font-inter font-medium capitalize"
+                    >about</a
+                > -->
+            </nav>
+        </div>
+
+        <div class="navbar_bottom_right w-auto">
+            <p class="text-sm text-[#636270] font-inter font-normal capitalize">
+                contacto: <span class="text-[#272343]">(099)270-3156</span>
+            </p>
+        </div>
+    </div>
+</div>
+<!-- <script>
+    import { actions } from "astro:actions";
+
+    document.addEventListener("DOMContentLoaded", async () => {
+        const { data, error } = await actions.getCategories();
+        if (!error) {
+            window.categories = data.categories;
+        }
+        else console.error(error);
+    });
+</script> -->

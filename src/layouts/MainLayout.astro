@@ -1,0 +1,44 @@
+---
+import "../assets/styles/global.css";
+import Navbar from "../components/shared/Navbar.astro";
+
+interface Props {
+    title?: string;
+    description?: string;
+}
+
+const { title = "Tecno Store", description = "Tienda" } = Astro.props;
+---
+
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{title}</title>
+
+        <!-- Meta tags -->
+        <meta name="title" content={title} />
+        <meta name="description" content={description} />
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:title" content={title} />
+        <meta property="og:url" content={Astro.url} />
+        <meta property="og:description" content={description} />
+        <meta property="og:type" content="website" />
+        <!-- <meta property="og:image" content={image} /> -->
+
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content={Astro.url} />
+        <meta property="twitter:title" content={title} />
+        <meta property="twitter:description" content={description} />
+        <!-- <meta property="twitter:image" content={image} /> -->
+    </head>
+    <body>
+        <Navbar />
+        <main>
+            <slot />
+        </main>
+    </body>
+</html>
