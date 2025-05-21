@@ -8,7 +8,8 @@ frontend:
       commands:
         - npm run build
         - npm prune --production
-        - mv node_modules ./.amplify-hosting/compute/default
+        - cp -R node_modules .amplify-hosting/compute/default/
+        - cp package.json .amplify-hosting/compute/default/
   artifacts:
     baseDirectory: .amplify-hosting
     files:
