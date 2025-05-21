@@ -6,10 +6,10 @@ frontend:
         - npm ci
     build:
       commands:
-        - env >> .env
         - npm run build
+        - mv node_modules ./.amplify-hosting/compute/default
   artifacts:
-    baseDirectory: dist
+    baseDirectory: .amplify-hosting
     files:
       - '**/*'
   cache:
