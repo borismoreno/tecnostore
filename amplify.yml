@@ -3,10 +3,11 @@ frontend:
   phases:
     preBuild:
       commands:
-        - npm ci --production
+        - npm ci
     build:
       commands:
         - npm run build
+        - npm prune --production
         - mv node_modules ./.amplify-hosting/compute/default
   artifacts:
     baseDirectory: .amplify-hosting
